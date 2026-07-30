@@ -34,9 +34,11 @@
     min-height: 100dvh;
     background: linear-gradient(160deg, var(--pink-bg-1) 0%, var(--pink-bg-2) 55%, #ffc9de 100%);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
     position: relative;
   }
 
@@ -71,6 +73,7 @@
     align-items: center;
     justify-content: center;
     padding: 24px 18px;
+    margin: 0 auto;
   }
 
   .card{
@@ -130,11 +133,11 @@
   }
 
   .btn-row{
-    position: relative;
+    position: relative; /* ancre les positions absolues du bouton "non" ICI, pas sur .card */
     display: flex;
     flex-direction: column;
     gap: 14px;
-    min-height: 160px;
+    min-height: 140px;
   }
 
   button{
@@ -250,6 +253,30 @@
 
   @media (prefers-reduced-motion: reduce){
     .deco span, button, .card{ animation: none !important; }
+  }
+
+  /* écrans bas / petits téléphones : on resserre pour limiter le scroll */
+  @media (max-height: 750px){
+    .app{ padding: 14px 14px; }
+    .card{ padding: 22px 18px 20px; border-radius: 26px; }
+    .eyebrow{ margin-bottom: 10px; padding: 5px 12px; font-size: 12px; }
+    h1{ font-size: 27px; margin-bottom: 6px; }
+    p.question{ font-size: 15.5px; margin-bottom: 16px; }
+    .btn-row{ min-height: 120px; gap: 10px; }
+    button{ padding: 13px 18px; font-size: 15px; }
+    .section-title{ margin: 14px 0 8px; font-size: 14px; }
+    .options{ gap: 8px; }
+    .opt{ padding: 10px 8px; font-size: 13px; gap: 2px; }
+    .opt .emoji{ font-size: 20px; }
+    .btn-next{ margin-top: 16px; }
+    .recap{ padding: 16px; font-size: 15.5px; margin: 12px 0 4px; }
+  }
+
+  @media (max-height: 620px){
+    h1{ font-size: 23px; }
+    p.question{ font-size: 14.5px; }
+    .btn-row{ min-height: 100px; }
+    .card::before{ width: 90px; height: 90px; }
   }
 </style>
 </head>
